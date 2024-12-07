@@ -4,6 +4,8 @@
         "ios": "cpp",
         "__hash_table": "cpp",
         "unordered_map": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "iostream": "cpp"
     }
 }
