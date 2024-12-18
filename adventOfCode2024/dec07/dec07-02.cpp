@@ -24,6 +24,9 @@ void check(
         return;
     }
 
+    if (sum > tar)
+        return;
+
     check(
         i + 1,
         vec,
@@ -33,6 +36,15 @@ void check(
 
     if (sum == 0)
         sum = 1;
+    else
+    {
+        check(
+            i + 1,
+            vec,
+            atol((to_string(sum) + to_string(vec[i])).c_str()),
+            tar,
+            flag);
+    }
 
     check(
         i + 1,
