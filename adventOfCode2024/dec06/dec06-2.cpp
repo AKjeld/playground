@@ -58,7 +58,7 @@ bool detectLoop(
     int y,
     int dur,
     int maxDuration,
-    vector<vector<char>> &map)
+    vector<vector<char>>& map)
 {
     // Very insane edgecase if whole loop is overwritten while moving.
     if (map[x][y] == a || dur >= maxDuration) 
