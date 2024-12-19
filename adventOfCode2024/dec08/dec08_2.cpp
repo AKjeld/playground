@@ -8,12 +8,9 @@
 
 using namespace std;
 
-pair<int, int> calc_anti(pair<int, int> pair_a, pair<int, int> pair_b)
+pair<int, int> calc_dist(pair<int, int> pair_a, pair<int, int> pair_b)
 {
-    int dist_x = pair_a.first - pair_b.first;
-    int dist_y = pair_a.second - pair_b.second;
-
-    return make_pair<int, int>(pair_a.first - 2 * dist_x, pair_a.second - 2 * dist_y);
+    return make_pair(pair_a.first - pair_b.first, pair_a.second - pair_b.second);
 }
 
 bool in_bounds(pair<int, int> pair, int xlen, int ylen)
@@ -66,15 +63,24 @@ int main()
 
             for (int j = i + 1; j < vec.size(); j++)
             {
-                pair<int, int> compair = vec[j];
+                pair<int, int> dist = calc_dist(p, vec[j]);
 
-                pair<int, int> anti_one = calc_anti(p, compair);
-                if (in_bounds(anti_one, n, m))
-                    res.insert(anti_one);
+                pair<int, int> anti = p;
 
-                pair<int, int> anti_two = calc_anti(compair, p);
-                if (in_bounds(anti_two, n, m))
-                    res.insert(anti_two);
+                while (in_bounds(anti, n, m))
+                {
+                    res.insert(anti);
+                    anti = calc_dist(anti, dist);
+                }
+
+                dist = calc_dist(vec[j], p);
+                anti = p;
+
+                while (in_bounds(anti, n, m))
+                {
+                    res.insert(anti);
+                    anti = calc_dist(anti, dist);
+                }
             }
         }
     }
